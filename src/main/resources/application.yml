@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: hlt-api-gateway-service
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      routes:
+        - id: hlt-food-service
+          uri: lb://HLT-FOOD-SERVICE
+          predicates:
+            - Path=/foods/**
+        - id: pls-bmi-calc-service
+          uri: lb://HLT-BMI-CALC-SERVICE
+          predicates:
+            - Path=/bmi-calc/**
+        - id: pls-bmr-calc-service
+          uri: lb://HLT-BMR-CALC-SERVICE
+          predicates:
+            - Path=/bmr-calc/**
+  zipkin:
+    base-url: http://localhost:9411
+
+server:
+  port: 8088
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetchRegistry: true
+    registerWithEureka: true
