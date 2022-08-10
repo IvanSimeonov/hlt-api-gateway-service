@@ -10,11 +10,11 @@ spring:
           uri: lb://HLT-FOOD-SERVICE
           predicates:
             - Path=/foods/**
-        - id: pls-bmi-calc-service
+        - id: hlt-bmi-calc-service
           uri: lb://HLT-BMI-CALC-SERVICE
           predicates:
             - Path=/bmi-calc/**
-        - id: pls-bmr-calc-service
+        - id: hlt-bmr-calc-service
           uri: lb://HLT-BMR-CALC-SERVICE
           predicates:
             - Path=/bmr-calc/**
@@ -22,11 +22,11 @@ spring:
     base-url: http://localhost:9411
 
 server:
-  port: 8088
+  port: 8081
 
 eureka:
   client:
-    serviceUrl:
+    service-url:
       defaultZone: http://localhost:8761/eureka/
     fetchRegistry: true
     registerWithEureka: true
